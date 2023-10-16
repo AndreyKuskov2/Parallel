@@ -6,15 +6,16 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 	int n;
-#pragma omp parallel private(n)
+	// private - Указывает, что каждый поток должен иметь собственный экземпляр переменной.
+#pragma omp parallel private(n) // Объявляем параллельную область, с приватной переменной n
 	{
 		n = 1;
-#pragma omp master
+#pragma omp master // Определяем, что поток главный
 		{
 			n = 2;
 		}
 		printf("Первое значение n потока %d: %d\n", omp_get_thread_num(),n);
-#pragma omp barrier
+#pragma omp barrier // синхронизируем все потоки
 #pragma omp master
 		{
 			n = 3;
