@@ -18,10 +18,6 @@ int main() {
                 std::cout << "Задача 2 выполняется\n";
             }
             
-        }
-
-        #pragma omp sections
-        {
             #pragma omp section
             {
                 // Задача 3: Выполнение третьей задачи (после второй)
